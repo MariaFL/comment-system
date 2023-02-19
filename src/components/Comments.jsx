@@ -1,5 +1,6 @@
 import React from "react";
-import Comment from './Comment';
+import List from '@mui/material/List';
+import Comment from './comment/Comment';
 
 const comments = [
     {
@@ -14,12 +15,24 @@ const comments = [
         author: 'David',
         text: 'Nunc scelerisque viverra mauris in aliquam sem fringilla ut morbi. Porta nibh venenatis cras sed felis eget velit. Proin fermentum leo vel orci porta non pulvinar neque. Lacus vestibulum sed arcu non odio. Adipiscing elit duis tristique sollicitudin nibh sit. Pretium nibh ipsum consequat nisl vel pretium lectus quam. Sollicitudin aliquam ultrices sagittis orci a scelerisque purus semper eget. At tempor commodo ullamcorper a lacus vestibulum sed arcu. Platea dictumst quisque sagittis purus sit amet volutpat consequat. Dolor morbi non arcu risus quis varius quam. Habitasse platea dictumst vestibulum rhoncus. Varius sit amet mattis vulputate enim nulla aliquet porttitor. Mauris commodo quis imperdiet massa tincidunt nunc pulvinar. Facilisis mauris sit amet massa. Nunc consequat interdum varius sit amet. Nisl nunc mi ipsum faucibus vitae aliquet. Amet facilisis magna etiam tempor orci eu lobortis elementum. Arcu felis bibendum ut tristique et egestas quis ipsum suspendisse.',
         date: 1676800056837,
-        rating: 5,
+        rating: 10,
+    },
+    {
+        id: 3,
+        author: 'Mary',
+        text: 'Nunc scelerisque viverra mauris in aliquam sem fringilla ut morbi. Porta nibh venenatis cras sed felis eget velit. Proin fermentum leo vel orci porta non pulvinar neque. Lacus vestibulum sed arcu non odio. Adipiscing elit duis tristique sollicitudin nibh sit. Pretium nibh ipsum consequat nisl vel pretium lectus quam. Sollicitudin aliquam ultrices sagittis orci a scelerisque purus semper eget. At tempor commodo ullamcorper a lacus vestibulum sed arcu. Platea dictumst quisque sagittis purus sit amet volutpat consequat. Dolor morbi non arcu risus quis varius quam. Habitasse platea dictumst vestibulum rhoncus. Varius sit amet mattis vulputate enim nulla aliquet porttitor. Mauris commodo quis imperdiet massa tincidunt nunc pulvinar. Facilisis mauris sit amet massa. Nunc consequat interdum varius sit amet. Nisl nunc mi ipsum faucibus vitae aliquet. Amet facilisis magna etiam tempor orci eu lobortis elementum. Arcu felis bibendum ut tristique et egestas quis ipsum suspendisse.',
+        date: 1676800056837,
+        rating: -11,
     }
 ]
 
 const Comments = () => {
-    return comments.map(comment => <Comment comment={comment} />)
+    return (
+        <List>
+            {comments.map((comment) => <Comment comment={comment} />)}
+        </List>
+    )
 }
+
 
 export default Comments;
