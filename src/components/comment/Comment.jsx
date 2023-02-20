@@ -4,18 +4,19 @@ import ListItemAvatar from '@mui/material/ListItemAvatar';
 import Avatar from '@mui/material/Avatar';
 import Collapse from '@mui/material/Collapse';
 import { Grid, Typography } from '@mui/material';
+import DateText from "./DateText";
 
 
 
 const Comment = (props) => {
-    const {avatar, author, rating, text} = props.comment;
+    const {avatar, author, rating, text, date} = props.comment;
+    let textDate;
+
+    //if (date > )
     return (
         <ListItem 
             alignItems="flex-start" 
-            divider 
-            // secondaryAction={
-            //     <CommentBlock text={text} rating={rating}/>
-            // }
+            divider
         >
             <ListItemAvatar>
                 <Avatar src={avatar} alt={author}>
@@ -24,10 +25,15 @@ const Comment = (props) => {
             </ListItemAvatar>
             <Grid>
                 <Typography 
-                    variant="subtitle2" 
+                    variant="subtitle1" 
+                    component="span"
                     gutterBottom
+                    mr={2}
                 >
                     {author}
+                </Typography>
+                <Typography component="span" variant="body2">
+                    <DateText date={date}/>
                 </Typography>
                 <CommentBlock text={text} rating={rating}/>
             </Grid>
