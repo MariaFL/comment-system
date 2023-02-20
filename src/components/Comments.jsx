@@ -3,6 +3,8 @@ import List from '@mui/material/List';
 import Container from '@mui/material/Container';
 import Box from '@mui/material/Box';
 import TextField from '@mui/material/TextField';
+
+import FormControl from '@mui/material/FormControl';
 import Comment from './comment/Comment';
 import './comments.css'
 
@@ -34,12 +36,17 @@ const Comments = () => {
     return (
         <Container maxWidth="md">
             <List>
-                {comments.map((comment) => <Comment comment={comment} key={comment.id}/>)}
+                {comments.map((comment) => <Comment comment={comment} key={`comment-${comment.id}`}/>)}
             </List>
+            <div>
             <Box component="form">
-                <TextField required label="Email" className="input-email" />
-                <TextField required multiline label="Текст комментария" rows={4} fullWidth/>
+                <FormControl>
+                    <TextField required label="Email" className="input-email" type="email"/>
+                    <TextField required multiline label="Текст комментария" rows={4} fullWidth/>
+                </FormControl>
             </Box>
+            </div>
+            
         </Container>
         
     )
