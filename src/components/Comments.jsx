@@ -1,6 +1,10 @@
 import React from "react";
 import List from '@mui/material/List';
+import Container from '@mui/material/Container';
+import Box from '@mui/material/Box';
+import TextField from '@mui/material/TextField';
 import Comment from './comment/Comment';
+import './comments.css'
 
 const comments = [
     {
@@ -28,9 +32,16 @@ const comments = [
 
 const Comments = () => {
     return (
-        <List>
-            {comments.map((comment) => <Comment comment={comment} />)}
-        </List>
+        <Container maxWidth="md">
+            <List>
+                {comments.map((comment) => <Comment comment={comment} key={comment.id}/>)}
+            </List>
+            <Box component="form">
+                <TextField required label="Email" className="input-email" />
+                <TextField required multiline label="Текст комментария" rows={4} fullWidth/>
+            </Box>
+        </Container>
+        
     )
 }
 
