@@ -1,13 +1,12 @@
 import React, { useRef, useState } from 'react';
-import { useForm, Controller, useFieldArray } from 'react-hook-form';
 import { List, Container, Box, TextField, Button } from '@mui/material';
 import Comment from './comment/Comment';
-import './comments.css';
+import AddComment from './form/AddComment';
 
 const commentsStatic = [
     {
         id: 1,
-        author: 'Daniel',
+        author: 'Lary',
         text: 'Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo consequat. Duis aute irure dolor in reprehenderit in voluptate velit esse cillum dolore eu fugiat nulla pariatur. Excepteur sint occaecat cupidatat non proident, sunt in culpa qui officia deserunt mollit anim id est laborum.',
         date: 1676800056837,
         rating: 5,
@@ -32,7 +31,7 @@ const Comments = () => {
     const [comments, setComments] =  useState(commentsStatic);
 
     const handlerAddComment = (comment) => {
-        const newComment = {...comment, id: comments.length, date: Date.now(), rating: 0};
+        const newComment = {...comment, id: comments.length + 1, date: Date.now(), rating: 0};
         setComments([...comments, newComment]);
     }
 
@@ -44,35 +43,12 @@ const Comments = () => {
         setComments([...oldComments]);
     }
 
-    const formRef = useRef(null);
-
-    const { control, handleSubmit } = useForm({
-        reValidateMode: "onBlur"
-      });
-
     return (
         <Container maxWidth="md">
             <List>
                 {comments.map((comment) => <Comment comment={comment} key={`comment-${comment.id}`} onChangeRating={handlerEditRating}/>)}
             </List>
-            <Box component="form" ref={formRef} onSubmit={(e) => {e.preventDefault(); console.log(e); console.log(formRef)}}>
-            <Controller
-              control={control}
-              name="author"
-              defaultValue=""
-              render={({ field }) => (
-                <TextField
-                  {...field}
-                  fullWidth
-                  variant="filled"
-                  required label="Email"
-                  type="email"
-                />
-              )}
-            />
-                <TextField required multiline label="Текст комментария" rows={4} fullWidth name="text"/>
-                <Button type="submit" variant="contained">Оставить комментарий</Button>
-            </Box>
+            <AddComment onAddComment={handlerAddComment}/>
         </Container>
         
     )
