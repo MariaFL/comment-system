@@ -25,20 +25,26 @@ const Comment = (props) => {
                     {!avatar ? author[0] : null}
                 </Avatar>
             </ListItemAvatar>
-            <Grid>
-                <Typography 
-                    variant="subtitle1" 
-                    component="span"
-                    gutterBottom
-                    mr={2}
-                >
-                    {author}
-                </Typography>
-                <Typography component="span" variant="body2">
-                    <DateText date={date}/>
-                </Typography>
-                <CommentBlock text={text} rating={rating}/>
-                <RatingBlock rating={rating} onAdd={handleAddRating} onDeduct={handleDeductRating}/>
+            <Grid container>
+                <Grid container justifyContent="flex-start" alignItems="baseline">
+                    <Typography 
+                        variant="subtitle1" 
+                        gutterBottom
+                        mr={1}
+                    >
+                        {author}
+                    </Typography>
+                    <Typography variant="body2">
+                        <DateText date={date}/>
+                    </Typography>
+                </Grid>
+                <Grid item xs={12}>
+                    <CommentBlock text={text} rating={rating}/>
+                </Grid>
+                
+                    <RatingBlock rating={rating} onAdd={handleAddRating} onDeduct={handleDeductRating}/>
+            
+                
             </Grid>
         </ListItem>
     );
