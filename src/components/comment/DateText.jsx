@@ -1,7 +1,6 @@
-import React, {useState, useEffect} from "react";
+import {useState, useEffect} from 'react';
 
-const DateText = ({date}) => {
-    const commentDate = new Date(date);
+const DateText = ({date: commentDate}) => {
     const [dateNow, setDateNow] = useState(new Date());
     const [dateDiff, setDateDiff] = useState(0);
     const getDate = () => setDateNow(new Date());
@@ -14,9 +13,10 @@ const DateText = ({date}) => {
         setDateDiff((dateNow - commentDate) / 60000);
     }, [dateNow, commentDate]);
 
-    
-
-    return (dateDiff/60 <= 1) ? Math.floor(dateDiff) + ' мин. назад' : (dateDiff/(60 * 24) <= 1) ? Math.floor(dateDiff/60) + 'ч. назад' : Math.floor(dateDiff/(60 * 24)) + 'дн. назад';
+    return (dateDiff/60 <= 1) ? 
+        Math.floor(dateDiff) + ' мин. назад' : (dateDiff/(60 * 24) <= 1) ? 
+        Math.floor(dateDiff/60) + 'ч. назад' : 
+        Math.floor(dateDiff/(60 * 24)) + 'дн. назад';
 }
 
 export default DateText;

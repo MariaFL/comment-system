@@ -1,18 +1,20 @@
-import React from "react";
-import ListItem from '@mui/material/ListItem';
-import ListItemAvatar from '@mui/material/ListItemAvatar';
-import Avatar from '@mui/material/Avatar';
-import Collapse from '@mui/material/Collapse';
-import { Grid, Typography } from '@mui/material';
+import React, { useEffect } from 'react';
+import { Avatar, Collapse, Grid, ListItem , ListItemAvatar, Typography } from '@mui/material';
 import DateText from "./DateText";
-
-
+import RatingBlock from "./RatingBlock";
 
 const Comment = (props) => {
-    const {avatar, author, rating, text, date} = props.comment;
-    let textDate;
+    const {id, avatar, author, rating, text, date} = props.comment;
+    const {onChangeRating} = props;
 
-    //if (date > )
+    const handleAddRating = () => {
+        onChangeRating(id, rating + 1);
+    }
+
+    const handleDeductRating = () => {
+        onChangeRating(id, rating - 1);
+    }
+
     return (
         <ListItem 
             alignItems="flex-start" 
@@ -36,13 +38,18 @@ const Comment = (props) => {
                     <DateText date={date}/>
                 </Typography>
                 <CommentBlock text={text} rating={rating}/>
+                <RatingBlock rating={rating} onAdd={handleAddRating} onDeduct={handleDeductRating}/>
             </Grid>
         </ListItem>
     );
 }
 
 const CommentBlock = ({text, rating}) => {
-    const [openText, setOpenText] = React.useState(rating > -10);
+    const [openText, setOpenText] = React.useState(rating >= -10);
+
+    useEffect(() => {
+        setOpenText(rating >= -10);
+    }, [rating])
 
     const handleOpenChange = () => setOpenText(true);
 
